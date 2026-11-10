@@ -31,12 +31,22 @@ Deuxième demande (écran de fin), faite par Claude Code et pas par la compléti
 - Ma question (prompt exact) :
 
 ```
-(colle-le ici)
+Je suis en Bachelor 1, j'ai fait un peu de Go. Explique jeu.js : comment fonctionnent la boucle du jeu, la chute des objets et la détection de l'objet attrapé ? Une phrase par partie.
 ```
 
-- Une affirmation de la réponse que j'ai vérifiée :
-- Comment je l'ai vérifiée (un changement dans le code, un test dans le jeu) :
-- Résultat : exacte, fausse ou incomplète :
+Remarque : je l'ai d'abord envoyée en mode Agent par erreur, puis renvoyée en mode Ask. Les deux réponses étaient presque identiques (boucle avec requestAnimationFrame, chute avec `objet.vitesse * dt`, détection avec estAttrape puis toucherObjet).
+
+Deuxième question (prompt exact, mode Ask) :
+
+```
+Comment le combo est-il remis à zéro dans jeu.js ?
+```
+
+Réponse de Copilot : trois cas. Quand le panier rate un cristal ou touche une bombe (`combo = 0` et `chronoCombo = 0`), quand le délai de combo de 3 secondes expire, et au démarrage d'une nouvelle partie.
+
+- Une affirmation de la réponse que j'ai vérifiée : « Quand le panier rate un cristal ou touche une bombe : combo = 0 et chronoCombo = 0. »
+- Comment je l'ai vérifiée (un changement dans le code, un test dans le jeu) : par l'exécution, sans changer le code. Le jeu a été lancé dans le navigateur (test fait par Claude Code, qui a lu les variables du jeu pendant la partie) : après 4 cristaux attrapés, combo = 4 et le HUD affiche x2 ; un cristal laissé tomber hors du panier fait passer les vies de 3 à 2, combo à 0 et le HUD à x1. J'ai aussi relu le code : rater un cristal appelle perdreVie (ligne 187), et perdreVie remet combo et chronoCombo à 0.
+- Résultat : exacte. Détail que Copilot ne dit pas : rater un cristal doré ne fait pas perdre de vie et ne remet pas le combo à zéro, il affiche seulement « CRISTAL DORÉ PERDU ».
 
 ## Défi 3 - Plan
 
