@@ -55,12 +55,25 @@ function dessinerFond(ctx, temps) {
   ctx.stroke();
   ctx.restore();
 }
-function dessinerPanier(ctx, panier, temps) {
+function dessinerPanier(ctx, panier, temps, bouclierActif) {
   const inclinaison = Math.max(-0.2, Math.min(0.2, panier.vitesse * 0.00025));
   const pulsation = 0.6 + 0.4 * Math.sin(temps * 6);
   ctx.save();
   ctx.translate(panier.x + panier.largeur / 2, panier.y + panier.hauteur / 2);
   ctx.rotate(inclinaison);
+  if (bouclierActif) {
+    // halo cyan autour du rail tant que le bouclier est actif
+    ctx.save();
+    ctx.globalAlpha = 0.45 + 0.25 * Math.sin(temps * 5);
+    ctx.shadowColor = COULEURS.cyan;
+    ctx.shadowBlur = 24;
+    ctx.strokeStyle = COULEURS.cyan;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(-panier.largeur / 2 - 10, -panier.hauteur / 2 - 10, panier.largeur + 20, panier.hauteur + 20, 16);
+    ctx.stroke();
+    ctx.restore();
+  }
   ctx.shadowColor = COULEURS.cyan;
   ctx.shadowBlur = 26;
   ctx.fillStyle = "rgba(40, 240, 255, 0.16)";

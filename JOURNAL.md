@@ -67,7 +67,18 @@ tu peut tout me faire
 
 (envoyé avec le sujet du cours ; l'agent a appliqué `PLAN.md`, puis le bouclier et le thème décrits au défi 4)
 
-- Fichiers que l'agent a modifiés : `config.js`, `jeu.js`, `dessin.js` (glace) ; puis `index.html`, `style.css` et `.github/copilot-instructions.md` (bouclier, thème « Pluie d'Étoiles », deux lignes de règles).
+Deuxième prompt, écrit avec les blocs du 22/10 (objectif, contexte, contraintes, format) :
+
+```
+Objectif : quand le bouclier est actif, dessine un halo cyan autour du rail pour qu'on le voie aussi dans le jeu, pas seulement dans le HUD.
+Contexte : jeu Pluie d'Étoiles en HTML, CSS et JavaScript simples. Le bouclier existe déjà (variable bouclier dans jeu.js, gagné toutes les 10 étoiles). Le rail est dessiné par dessinerPanier dans dessin.js.
+Contraintes : respecte .github/copilot-instructions.md ; ne change pas les règles du bouclier ; pas de nouvelle image ni de nouveau fichier ; code court et commenté en français.
+Format : explique en deux phrases ce que tu as changé, liste les fichiers modifiés et dis comment vérifier dans le navigateur.
+```
+
+Résultat : un halo cyan pulsant entoure le rail quand le bouclier est actif et disparaît quand il est brisé.
+
+- Fichiers que l'agent a modifiés : `config.js`, `jeu.js`, `dessin.js` (glace) ; puis `index.html`, `style.css` et `.github/copilot-instructions.md` (bouclier, thème « Pluie d'Étoiles », deux lignes de règles) ; puis `dessin.js` et `jeu.js` (halo du bouclier).
 - Ce que j'ai relu dans les changements avant d'accepter : le diff de chaque commit, puis le jeu. Pendant le gel, les objets tombent à 40 % de leur vitesse pendant 4 secondes ; une glace ratée ne coûte pas de vie. Le bouclier apparaît à 10 étoiles, un seul à la fois, et absorbe une météore ; la suivante enlève bien une vie.
 - Ce que j'ai refusé, corrigé ou fait refaire : la glace était bleu clair et de la même taille que les étoiles cyan, impossible à distinguer. Je l'ai fait refaire : glace blanche et plus grosse (commit séparé).
 - Mon jeu après l'agent (une phrase) : Pluie d'Étoiles, où l'on attrape des étoiles, évite des météores, gagne un bouclier toutes les 10 étoiles et peut geler la pluie avec une étoile de glace.

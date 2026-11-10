@@ -228,7 +228,7 @@ function dessiner() {
     ctx.translate(hasard(-forceSecousse, forceSecousse), hasard(-forceSecousse, forceSecousse));
   }
   if (etat !== "titre") {
-    dessinerPanier(ctx, panier, temps);
+    dessinerPanier(ctx, panier, temps, bouclier);
     for (const objet of objets) dessinerObjet(ctx, objet, temps);
   }
   dessinerEffets(ctx);
