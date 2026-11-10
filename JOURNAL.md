@@ -11,12 +11,20 @@ Règle : tu colles ici le texte exact de tes prompts (copier-coller, pas de capt
 - Commentaire ou début de code que j'ai écrit :
 
 ```
-(colle-le ici)
+// compte les cristaux attrapés dans la variable cristaux
+// nombre de cristaux attrapés pendant la partie
+// remet les cristaux à zéro
 ```
 
-- Ce que Copilot a proposé :
-- Ce que j'ai accepté, modifié ou refusé, et pourquoi :
-- Comment j'ai vérifié que ça marche :
+Deuxième demande (écran de fin), faite par Claude Code et pas par la complétion Copilot :
+
+```
+// affiche le nombre de cristaux attrapés sur l'écran de fin
+```
+
+- Ce que Copilot a proposé : pour le premier commentaire, `if (objet.type === CRISTAL) { cristaux += 1; }`. Pour les deux commentaires suivants : `let cristaux = 0;` en haut du fichier et `cristaux = 0;` dans demarrerPartie.
+- Ce que j'ai accepté, modifié ou refusé, et pourquoi : j'ai accepté la première proposition. Elle ne compte que les cristaux normaux, pas les dorés ; je la garde parce que les dorés sont un bonus à part. Mais elle était incomplète : Copilot n'avait pas déclaré la variable, et le jeu plantait dès le premier cristal attrapé (console : `Uncaught ReferenceError: cristaux is not defined`, jeu.js:126). J'ai donc ajouté les deux commentaires pour la déclarer et la remettre à zéro. Pour l'écran de fin, il n'y avait aucun emplacement dans index.html : Claude Code a ajouté une ligne CRISTAUX (`fin-cristaux`) dans index.html et la ligne `finCristaux.textContent = cristaux;` dans terminerPartie.
+- Comment j'ai vérifié que ça marche : d'abord l'erreur dans la console (F12), qui a disparu après la déclaration. Puis le jeu a été lancé dans un navigateur par Claude Code : 4 cristaux attrapés, l'écran de fin affiche 4 ; à la partie suivante, le compteur repart à 0 et l'écran de fin affiche 0.
 
 ## Défi 2 - Ask
 
