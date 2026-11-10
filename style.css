@@ -1,9 +1,9 @@
-/* Pluie de Néon : page, écrans et interface. */
+/* Pluie d'Étoiles : page, écrans et interface. */
 
 :root {
-  --fond: #05030f;
+  --fond: #030817;
   --cyan: #28f0ff;
-  --magenta: #ff3ea5;
+  --magenta: #ff8a3d;
   --or: #ffd166;
   --rouge: #ff4d6d;
   --blanc: #f5f7ff;
@@ -33,7 +33,7 @@ body {
   font-family: var(--police);
   background:
     radial-gradient(circle at 18% 0%, rgba(122, 92, 255, 0.2), transparent 42%),
-    radial-gradient(circle at 82% 100%, rgba(255, 62, 165, 0.14), transparent 46%),
+    radial-gradient(circle at 82% 100%, rgba(255, 138, 61, 0.14), transparent 46%),
     var(--fond);
 }
 
@@ -252,7 +252,7 @@ canvas {
   padding: calc(var(--taille-scene) * 0.06);
   text-align: center;
   background:
-    radial-gradient(circle at 50% 24%, rgba(255, 62, 165, 0.12), transparent 40%),
+    radial-gradient(circle at 50% 24%, rgba(255, 138, 61, 0.12), transparent 40%),
     linear-gradient(180deg, rgba(7, 4, 18, 0.72), rgba(3, 2, 8, 0.98));
   backdrop-filter: blur(2px);
   animation: apparait 0.35s ease both;
@@ -283,7 +283,7 @@ canvas {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: drop-shadow(0 0 18px rgba(40, 240, 255, 0.35)) drop-shadow(0 0 40px rgba(255, 62, 165, 0.22));
+  filter: drop-shadow(0 0 18px rgba(40, 240, 255, 0.35)) drop-shadow(0 0 40px rgba(255, 138, 61, 0.22));
   animation: souffle 4s ease-in-out infinite;
 }
 
@@ -437,8 +437,8 @@ canvas {
 }
 
 @keyframes souffle {
-  0%, 100% { filter: drop-shadow(0 0 16px rgba(40, 240, 255, 0.3)) drop-shadow(0 0 34px rgba(255, 62, 165, 0.2)); }
-  50% { filter: drop-shadow(0 0 26px rgba(40, 240, 255, 0.55)) drop-shadow(0 0 50px rgba(255, 62, 165, 0.35)); }
+  0%, 100% { filter: drop-shadow(0 0 16px rgba(40, 240, 255, 0.3)) drop-shadow(0 0 34px rgba(255, 138, 61, 0.2)); }
+  50% { filter: drop-shadow(0 0 26px rgba(40, 240, 255, 0.55)) drop-shadow(0 0 50px rgba(255, 138, 61, 0.35)); }
 }
 
 @keyframes battement {

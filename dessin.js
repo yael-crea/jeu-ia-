@@ -14,7 +14,7 @@ function dessinerFond(ctx, temps) {
 
   const horizon = HAUTEUR * 0.58;
   const halo = ctx.createRadialGradient(LARGEUR / 2, horizon, 4, LARGEUR / 2, horizon, LARGEUR * 0.8);
-  halo.addColorStop(0, "rgba(255, 62, 165, 0.2)");
+  halo.addColorStop(0, "rgba(255, 138, 61, 0.2)");
   halo.addColorStop(0.5, "rgba(122, 92, 255, 0.07)");
   halo.addColorStop(1, "rgba(0, 0, 0, 0)");
   ctx.fillStyle = halo;
@@ -48,7 +48,7 @@ function dessinerFond(ctx, temps) {
   ctx.save();
   ctx.shadowColor = COULEURS.magenta;
   ctx.shadowBlur = 16;
-  ctx.strokeStyle = "rgba(255, 62, 165, 0.5)";
+  ctx.strokeStyle = "rgba(255, 138, 61, 0.5)";
   ctx.beginPath();
   ctx.moveTo(0, horizon);
   ctx.lineTo(LARGEUR, horizon);
