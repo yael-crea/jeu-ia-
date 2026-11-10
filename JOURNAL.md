@@ -71,7 +71,16 @@ Ce prompt n'a pas été envoyé au mode Plan de Copilot : à partir du défi 3, 
 - Mon prompt en mode Agent :
 
 ```
+tu peut tout me faire
+```
 
+Deuxième prompt (bouclier et thème) réécrit après coup avec les blocs du 22/10. Il n'a pas été envoyé tel quel : il décrit ce que l'agent a reçu comme consignes (le sujet) et ce que j'en attendais.
+
+```
+Objectif : ajoute un bouclier qui absorbe la prochaine bombe, visible dans le HUD, et change le thème du jeu en « Pluie d'Étoiles » (espace : les cristaux deviennent des étoiles, les bombes des météores).
+Contexte : jeu web en HTML, CSS et JavaScript simples (config.js, jeu.js, dessin.js, index.html, style.css). Le cristal de glace et le compteur de cristaux existent déjà.
+Contraintes : respecte .github/copilot-instructions.md ; un bouclier toutes les 10 étoiles, un seul à la fois ; réglages dans config.js ; ne casse pas le compteur de cristaux ni la glace ; pas d'emoji.
+Format : explique en deux phrases ce que tu as changé, liste les fichiers modifiés et dis comment vérifier dans le navigateur.
 ```
 
 Ce prompt a été envoyé à Claude Code (Claude Opus 5.5), pas au mode Agent de Copilot, avec le sujet en PDF. Claude Code a appliqué `PLAN.md`, puis a ajouté le bouclier et le thème à partir des consignes du sujet (défi 4, étapes 4 et 5). Il n'y a pas eu de deuxième prompt formulé avec objectif, contexte, contraintes et format.
