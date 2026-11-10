@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#05030f">
-  <title>Pluie de Néon</title>
+  <meta name="theme-color" content="#030817">
+  <title>Pluie d'Étoiles</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="page">
     <header class="barre">
-      <span class="barre-nom">PLUIE DE NÉON</span>
+      <span class="barre-nom">PLUIE D'ÉTOILES</span>
       <button id="bouton-son" class="bouton-son" type="button" aria-pressed="true">SON ACTIF</button>
     </header>
 
@@ -32,13 +32,14 @@
           <div class="vies" id="vies" aria-label="Vies restantes">
             <i></i><i></i><i></i>
           </div>
+          <span id="bouclier" class="niveau" style="visibility: hidden">BOUCLIER</span>
         </div>
       </div>
 
       <div id="ecran-titre" class="ecran">
-        <p class="sur-titre">JEU MODÈLE / BACHELOR 1</p>
-        <h1 class="titre">PLUIE<br>DE NÉON</h1>
-        <p class="but">Attrape les cristaux.<br>Évite les bombes.</p>
+        <p class="sur-titre">BACHELOR 1 / JEU IA</p>
+        <h1 class="titre">PLUIE<br>D'ÉTOILES</h1>
+        <p class="but">Attrape les étoiles.<br>Évite les météores.<br>10 étoiles = un bouclier.</p>
         <button id="bouton-jouer" class="bouton-principal" type="button">JOUER</button>
         <p class="record-titre">RECORD <strong id="record-titre">0</strong></p>
         <p class="commandes">Flèches ou A et D<br>Souris ou doigt</p>
@@ -54,7 +55,7 @@
           <strong id="fin-record">0</strong>
         </div>
         <div class="fin-ligne">
-          <span>CRISTAUX</span>
+          <span>ÉTOILES</span>
           <strong id="fin-cristaux">0</strong>
         </div>
         <button id="bouton-rejouer" class="bouton-principal" type="button">REJOUER</button>
@@ -64,7 +65,7 @@
     </section>
 
     <footer class="pied">
-      <span>Attrape les cristaux, évite les bombes, enchaîne pour multiplier les points.</span>
+      <span>Attrape les étoiles, évite les météores, enchaîne pour multiplier les points.</span>
     </footer>
   </main>
   <script src="config.js"></script>

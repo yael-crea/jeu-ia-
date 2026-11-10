@@ -1,4 +1,4 @@
-// Logique de Pluie de Néon : état, entrées, règles et boucle du jeu.
+// Logique de Pluie d'Étoiles : état, entrées, règles et boucle du jeu.
 // Les éléments de la page.
 const canvas = document.getElementById("jeu");
 const ctx = canvas.getContext("2d");
@@ -19,6 +19,7 @@ const finScore = document.getElementById("fin-score");
 const finRecord = document.getElementById("fin-record");
 const finCristaux = document.getElementById("fin-cristaux");
 const badgeRecord = document.getElementById("badge-record");
+const elementBouclier = document.getElementById("bouclier");
 // L'état de la partie.
 let etat = "titre";
 let score = 0;
@@ -30,6 +31,8 @@ let niveau = 1;
 let tempsJeu = 0;
 let combo = 0;
 let chronoCombo = 0;
+let chronoGlace = 0;
+let bouclier = false; // absorbe la prochaine météore
 let objets = [];
 let chronoSpawn = 0;
 let dernierTemps = 0;
@@ -47,12 +50,13 @@ function multiplicateur() {
 }
 function majHud() {
   elementScore.textContent = score;
-  elementNiveau.textContent = "NIVEAU " + niveau;
+  elementNiveau.textContent = chronoGlace > 0 ? "GEL " + Math.ceil(chronoGlace) : "NIVEAU " + niveau;
   elementComboValeur.textContent = "x" + multiplicateur();
   elementCombo.classList.toggle("fort", multiplicateur() > 1);
   for (let i = 0; i < elementVies.length; i++) {
     elementVies[i].classList.toggle("perdue", i >= vies);
   }
+  elementBouclier.style.visibility = bouclier ? "visible" : "hidden";
   elementComboJauge.style.transform = "scaleX(" + Math.max(0, chronoCombo / REGLAGES.dureeCombo) + ")";
 }
 // Lancer, terminer et recommencer une partie.
@@ -62,7 +66,7 @@ function demarrerPartie() {
   score = 0; vies = REGLAGES.viesDepart; niveau = 1; tempsJeu = 0;
   // remet les cristaux à zéro
   cristaux = 0;
-  combo = 0; chronoCombo = 0; objets = []; chronoSpawn = 0.45;
+  combo = 0; chronoCombo = 0; objets = []; chronoSpawn = 0.45; chronoGlace = 0; bouclier = false;
   panier.x = LARGEUR / 2 - panier.largeur / 2; panier.cibleX = null; panier.vitesse = 0;
   ecranTitre.classList.add("cache");
   ecranFin.classList.add("cache");
@@ -92,7 +96,8 @@ function creerObjet() {
   let type = CRISTAL;
   if (tirage < Math.min(0.42, REGLAGES.hasardBombe + (niveau - 1) * 0.03)) type = BOMBE;
   else if (tirage > 1 - REGLAGES.hasardDore) type = DORE;
-  const rayon = type === DORE ? 17 : type === BOMBE ? 15 : 13;
+  else if (tirage > 1 - REGLAGES.hasardDore - REGLAGES.hasardGlace) type = GLACE;
+  const rayon = type === DORE || type === GLACE ? 17 : type === BOMBE ? 15 : 13;
   const vitesse = Math.min(REGLAGES.vitesseChuteMax, REGLAGES.vitesseChute + (niveau - 1) * 28);
   objets.push({
     type: type, x: hasard(rayon + 12, LARGEUR - rayon - 12), y: -rayon - 8, rayon: rayon,
@@ -119,6 +124,14 @@ function estAttrape(objet) {
     objet.x - objet.rayon * 0.5 <= panier.x + panier.largeur;
 }
 function toucherObjet(objet) {
+  if (objet.type === BOMBE && bouclier) {
+    // le bouclier absorbe la météore à la place d'une vie
+    bouclier = false;
+    creerParticules(objet.x, objet.y, COULEURS.cyan, 36, 360);
+    ajouterTexte(objet.x, objet.y - 30, "BOUCLIER BRISÉ", COULEURS.cyan);
+    sonBombe(); secouer(8); flasher(COULEURS.cyan, 0.3);
+    return;
+  }
   if (objet.type === BOMBE) {
     creerParticules(objet.x, objet.y, COULEURS.magenta, 28, 320);
     perdreVie(objet.x, objet.y, true);
@@ -131,12 +144,22 @@ function toucherObjet(objet) {
 // compte les cristaux attrapés dans la variable cristaux
   if (objet.type === CRISTAL) {
     cristaux += 1;
+    if (!bouclier && cristaux % REGLAGES.etoilesBouclier === 0) {
+      bouclier = true;
+      ajouterTexte(panier.x + panier.largeur / 2, panier.y - 40, "BOUCLIER", COULEURS.cyan);
+    }
   }
-  const couleur = objet.type === DORE ? COULEURS.or : COULEURS.cyan;
+  const couleur = objet.type === DORE ? COULEURS.or : objet.type === GLACE ? COULEURS.glace : COULEURS.cyan;
   score += points;
   creerParticules(objet.x, objet.y, couleur, objet.type === DORE ? 24 : 14, 280);
   ajouterTexte(objet.x, objet.y - 10, "+" + points, couleur);
   if (objet.type === DORE) { sonDore(); flasher(COULEURS.or, 0.18); }
+  else if (objet.type === GLACE) {
+    // le gel ralentit tous les objets pendant dureeGlace secondes
+    chronoGlace = REGLAGES.dureeGlace;
+    ajouterTexte(objet.x, objet.y - 34, "GEL", COULEURS.glace);
+    sonDore(); flasher(COULEURS.glace, 0.25);
+  }
   else { sonCristal(multi); flasher(COULEURS.cyan, 0.06); }
   secouer(3);
 }
@@ -169,6 +192,8 @@ function mettreAJour(dt) {
     chronoCombo -= dt;
     if (chronoCombo <= 0) { chronoCombo = 0; combo = 0; }
   }
+  if (chronoGlace > 0) chronoGlace = Math.max(0, chronoGlace - dt);
+  const ralenti = chronoGlace > 0 ? REGLAGES.ralentiGlace : 1;
   majPanier(dt);
   chronoSpawn -= dt;
   if (chronoSpawn <= 0) {
@@ -177,7 +202,7 @@ function mettreAJour(dt) {
   }
   for (let i = objets.length - 1; i >= 0; i--) {
     const objet = objets[i];
-    objet.y += objet.vitesse * dt;
+    objet.y += objet.vitesse * dt * ralenti;
     objet.rotation += objet.vitesseRotation * dt;
     if (objet.type === DORE && Math.random() < dt * 18) {
       creerParticules(objet.x, objet.y, COULEURS.or, 1, 30);
@@ -188,7 +213,7 @@ function mettreAJour(dt) {
     } else if (objet.y - objet.rayon > HAUTEUR + 20) {
       objets.splice(i, 1);
       if (objet.type === CRISTAL) perdreVie(objet.x, HAUTEUR - 30, false);
-      else if (objet.type === DORE) ajouterTexte(objet.x, HAUTEUR - 40, "CRISTAL DORÉ PERDU", COULEURS.or);
+      else if (objet.type === DORE) ajouterTexte(objet.x, HAUTEUR - 40, "ÉTOILE DORÉE PERDUE", COULEURS.or);
     }
   }
   majHud();

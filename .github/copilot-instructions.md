@@ -12,6 +12,9 @@ Ce fichier est lu automatiquement par Copilot quand il travaille sur ce dépôt.
 
 ## Règles à respecter
 
+- Thème du jeu : Pluie d'Étoiles, dans l'espace. Les cristaux s'appellent des étoiles, les bombes des météores ; textes affichés en français, couleurs cyan, or et orange.
+- Règle maison : un bouclier s'obtient toutes les 10 étoiles, un seul à la fois, et absorbe la prochaine météore.
+
 - Code court et lisible par un débutant : fonctions simples, pas de classes, pas de modules, pas de syntaxe avancée.
 - Noms de variables et de fonctions en français, sans accents dans le code. Commentaires en français.
 - Les réglages (couleurs, vitesses, vies, raretés) restent dans `config.js`.
