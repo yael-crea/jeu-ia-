@@ -71,7 +71,7 @@ Ce prompt n'a pas été envoyé au mode Plan de Copilot : à partir du défi 3, 
 - Mon prompt en mode Agent :
 
 ```
-tu peut tout me faire
+
 ```
 
 Ce prompt a été envoyé à Claude Code (Claude Opus 5.5), pas au mode Agent de Copilot, avec le sujet en PDF. Claude Code a appliqué `PLAN.md`, puis a ajouté le bouclier et le thème à partir des consignes du sujet (défi 4, étapes 4 et 5). Il n'y a pas eu de deuxième prompt formulé avec objectif, contexte, contraintes et format.
@@ -95,6 +95,8 @@ Ce prompt a été envoyé à Claude Code (Claude Opus 5.5), pas au mode Agent de
 
 ## Bilan (3 lignes maximum)
 
-- Ce que l'assistant a fait mieux ou plus vite que moi :
-- Ce qu'il a mal fait ou ce que j'ai dû corriger :
-- Ce que je ne lui laisserais pas faire :
+Bilan rédigé avec Claude Code, à partir de ce qui s'est passé pendant la séance.
+
+- Ce que l'assistant a fait mieux ou plus vite que moi : écrire et tester le code (glace, bouclier, thème) en quelques minutes, et mesurer les effets dans le jeu (vitesse de chute, vies, combo) au lieu de juste dire que ça marche.
+- Ce qu'il a mal fait ou ce que j'ai dû corriger : Copilot a compté les cristaux sans déclarer la variable, ce qui faisait planter le jeu ; Claude Code a dessiné la glace presque comme une étoile normale et l'a corrigée après relecture.
+- Ce que je ne lui laisserais pas faire : décider à ma place sans que je relise, ni écrire mon journal ou mon avis à ma place, car c'est moi qui suis responsable de ce qui est dans le dépôt.
