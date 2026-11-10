@@ -2,7 +2,7 @@
 
 Nom et prénom : Yael Castan Gleizes
 Dépôt : https://github.com/yael-crea/jeu-ia-
-Outil utilisé (Copilot, modèle affiché) : GitHub Copilot, Copilot Fusion (GPT-5.6 Luna)
+Outil utilisé (Copilot, modèle affiché) : GitHub Copilot, Copilot Fusion (GPT-5.6 Luna) pour les défis 1 et 2 ; Claude Code (Claude Opus 5.5) pour les défis 3 à 5
 
 Règle : tu colles ici le texte exact de tes prompts (copier-coller, pas de capture). Une entrée par défi. Ce que tu n'as pas gardé compte autant que ce que tu as gardé.
 
@@ -53,11 +53,18 @@ Réponse de Copilot : trois cas. Quand le panier rate un cristal ou touche une b
 - Mon prompt en mode Plan :
 
 ```
-(colle-le ici)
+Je veux ajouter un cristal de glace, plus rare que le doré. Quand on l'attrape, tous les objets ralentissent pendant 4 secondes, puis reprennent leur vitesse. Respecte les règles de .github/copilot-instructions.md. Propose un plan sans modifier le code.
 ```
+
+Ce prompt n'a pas été envoyé au mode Plan de Copilot : à partir du défi 3, j'ai continué avec Claude Code (Claude Opus 5.5), comme le permet le sujet (« Si l'outil ne répond pas »). Ma demande à Claude Code était : « tu peut tout me faire » avec le sujet en PDF. Claude Code a lu le code et rédigé le plan.
 
 - Le plan est dans le fichier `PLAN.md`.
 - Ce que j'ai changé dans le plan avant de le valider (étape retirée, ajoutée, contrainte) et pourquoi :
+  - ajouté : durée et force du ralentissement dans `config.js`, parce que les instructions Copilot demandent que les réglages restent dans config.js ;
+  - ajouté : ne pas modifier `objet.vitesse` mais seulement multiplier le déplacement, sinon un objet créé pendant le gel resterait lent pour toujours ;
+  - retiré : un son dédié et des particules autour de la glace, parce que ce n'est pas demandé et que le JavaScript dépasse déjà la limite de 600 lignes (609) ;
+  - ajouté : la glace ne compte pas dans `cristaux`, pour ne pas casser le défi 1 ;
+  - ajouté : une section « Comment vérifier dans le jeu ».
 
 ## Défi 4 - Agent
 
