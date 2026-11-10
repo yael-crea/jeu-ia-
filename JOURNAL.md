@@ -88,10 +88,10 @@ Ce prompt a été envoyé à Claude Code (Claude Opus 5.5), pas au mode Agent de
 
 ## Défi 5 - Pull request et revue
 
-- Lien de ma pull request :
-- Commentaire de la revue Copilot que j'ai traité (le texte) :
-- Ma décision (corrigé ou refusé) et pourquoi :
-- Lien de mon jeu publié :
+- Lien de ma pull request : https://github.com/yael-crea/jeu-ia-/pull/1
+- Commentaire de la revue Copilot que j'ai traité (le texte) : la première demande de revue a échoué, Copilot a répondu « Copilot was unable to review this pull request because the user who requested the review has insufficient remaining quota. Try requesting a review at a lower effort level. » (À COMPLÉTER après la nouvelle demande de revue.)
+- Ma décision (corrigé ou refusé) et pourquoi : (À COMPLÉTER)
+- Lien de mon jeu publié : https://yael-crea.github.io/jeu-ia-/
 
 ## Bilan (3 lignes maximum)
 
