@@ -61,13 +61,9 @@ Je veux ajouter un cristal de glace, plus rare que le doré. Quand on l'attrape,
 
 - Mon prompt en mode Agent :
 
-```
-tu peut tout me faire
-```
+Première demande (résumé, pas le texte exact) : j'ai donné le sujet du cours à l'agent et je lui ai demandé de réaliser les défis. Il a appliqué `PLAN.md`, puis ajouté le bouclier et le thème décrits au défi 4.
 
-(envoyé avec le sujet du cours ; l'agent a appliqué `PLAN.md`, puis le bouclier et le thème décrits au défi 4)
-
-Deuxième prompt, écrit avec les blocs du 22/10 (objectif, contexte, contraintes, format) :
+Deuxième prompt (texte exact), écrit avec les blocs du 22/10 (objectif, contexte, contraintes, format) :
 
 ```
 Objectif : quand le bouclier est actif, dessine un halo cyan autour du rail pour qu'on le voie aussi dans le jeu, pas seulement dans le HUD.
