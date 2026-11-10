@@ -15,7 +15,7 @@ const COULEURS = {
   cyan: "#28f0ff",
   magenta: "#ff8a3d",
   or: "#ffd166",
-  glace: "#a8eaff",
+  glace: "#e8f8ff",
   rouge: "#ff4d6d",
   blanc: "#f5f7ff",
   grille: "rgba(40, 240, 255, 0.16)"

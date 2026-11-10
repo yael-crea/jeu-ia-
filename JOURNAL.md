@@ -71,13 +71,20 @@ Ce prompt n'a pas été envoyé au mode Plan de Copilot : à partir du défi 3, 
 - Mon prompt en mode Agent :
 
 ```
-(colle-le ici)
+tu peut tout me faire
 ```
 
+Ce prompt a été envoyé à Claude Code (Claude Opus 5.5), pas au mode Agent de Copilot, avec le sujet en PDF. Claude Code a appliqué `PLAN.md`, puis a ajouté le bouclier et le thème à partir des consignes du sujet (défi 4, étapes 4 et 5). Il n'y a pas eu de deuxième prompt formulé avec objectif, contexte, contraintes et format.
+
 - Fichiers que l'agent a modifiés :
-- Ce que j'ai relu dans les changements avant d'accepter :
-- Ce que j'ai refusé, corrigé ou fait refaire :
-- Mon jeu après l'agent (une phrase) :
+  - cristal de glace : `config.js`, `jeu.js`, `dessin.js` ;
+  - bouclier et thème « Pluie d'Étoiles » (espace : étoiles à attraper, météores à éviter, un bouclier toutes les 10 étoiles) : `config.js`, `jeu.js`, `dessin.js`, `index.html`, `style.css`, `.github/copilot-instructions.md` (deux lignes sur le thème et la règle du bouclier).
+- Ce que j'ai relu dans les changements avant d'accepter : le diff de chaque commit, puis des tests en lançant le jeu dans le navigateur :
+  - glace : la chute passe de 207 à 83 pixels par seconde (40 %) pendant 4 secondes, puis revient à 207 ; le HUD affiche « GEL 4 » ; une glace ratée ne fait pas perdre de vie ; sur 20 000 tirages, 3,1 % de glace contre 4,9 % de doré, donc plus rare ;
+  - bouclier : il apparaît à la 10e étoile, un seul à la fois ; la première météore le casse sans perte de vie ; la suivante enlève bien une vie ; il disparaît à la nouvelle partie.
+- Ce que j'ai refusé, corrigé ou fait refaire : le cristal de glace était dessiné en bleu clair, presque de la même couleur et de la même taille que les étoiles cyan. Sur une capture du jeu, on ne pouvait pas les distinguer, donc le joueur ne pouvait pas viser la glace exprès. Corrigé dans un commit à part : glace blanche et plus grosse (rayon 17 au lieu de 13).
+- Limites : le test « relancer un prompt court et voir si l'agent tient compte de `.github/copilot-instructions.md` » n'a pas été fait, car ce fichier est lu par Copilot, pas par Claude Code. Le JavaScript dépasse maintenant la règle des 600 lignes (le modèle en avait déjà 598).
+- Mon jeu après l'agent (une phrase) : Pluie d'Étoiles, où l'on attrape des étoiles, évite des météores, gagne un bouclier toutes les 10 étoiles et peut geler la pluie pendant 4 secondes avec une étoile de glace.
 
 ## Défi 5 - Pull request et revue
 

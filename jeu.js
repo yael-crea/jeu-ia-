@@ -97,7 +97,7 @@ function creerObjet() {
   if (tirage < Math.min(0.42, REGLAGES.hasardBombe + (niveau - 1) * 0.03)) type = BOMBE;
   else if (tirage > 1 - REGLAGES.hasardDore) type = DORE;
   else if (tirage > 1 - REGLAGES.hasardDore - REGLAGES.hasardGlace) type = GLACE;
-  const rayon = type === DORE ? 17 : type === BOMBE ? 15 : 13;
+  const rayon = type === DORE || type === GLACE ? 17 : type === BOMBE ? 15 : 13;
   const vitesse = Math.min(REGLAGES.vitesseChuteMax, REGLAGES.vitesseChute + (niveau - 1) * 28);
   objets.push({
     type: type, x: hasard(rayon + 12, LARGEUR - rayon - 12), y: -rayon - 8, rayon: rayon,

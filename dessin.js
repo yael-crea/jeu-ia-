@@ -96,7 +96,7 @@ function dessinerCristal(ctx, objet, temps) {
   ctx.lineTo(0, r);
   ctx.lineTo(-r * 0.62, 0);
   ctx.closePath();
-  ctx.fillStyle = dore ? "rgba(255, 209, 102, 0.22)" : glace ? "rgba(168, 234, 255, 0.45)" : "rgba(40, 240, 255, 0.2)";
+  ctx.fillStyle = dore ? "rgba(255, 209, 102, 0.22)" : glace ? "rgba(232, 248, 255, 0.6)" : "rgba(40, 240, 255, 0.2)";
   ctx.fill();
   ctx.strokeStyle = couleur;
   ctx.lineWidth = 2;
